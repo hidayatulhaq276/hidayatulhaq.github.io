@@ -177,11 +177,76 @@ footer span{color:var(--accent)}
 hr.divider{border:none;border-top:1px solid var(--border);margin:1.5rem 0}
 
 @media(max-width:768px){
-.hero-grid,.case-card,.exp-grid,.contact-grid{grid-template-columns:1fr}
-.stats-grid,.projects-grid,.tools-grid,.skills-grid{grid-template-columns:repeat(2,1fr)}
-.rank-grid{grid-template-columns:1fr 1fr}
+.container{padding:0 16px}
+nav .inner{padding:0 16px}
 nav ul{display:none}
-.hero-photo{width:140px;height:140px;order:-1}
+.hero{padding:90px 0 60px}
+.hero-grid{grid-template-columns:1fr;gap:28px;text-align:center}
+.hero-photo{width:130px;height:130px;order:-1;margin:0 auto}
+h1{font-size:38px;letter-spacing:-1px}
+h1 .line2{font-size:0.6em}
+.hero-desc{font-size:15px;max-width:100%}
+.hero-cta{justify-content:center}
+.hero-tag{margin:0 auto 20px}
+section{padding:60px 0}
+.section-header{margin-bottom:32px;flex-wrap:wrap;gap:8px}
+h2{font-size:26px;letter-spacing:-0.5px}
+.section-line{display:none}
+.stats-strip{padding:32px 0}
+.stats-grid{grid-template-columns:repeat(2,1fr);gap:0}
+.stat-item{border-right:none;border-bottom:1px solid var(--border);padding:16px 12px}
+.stat-item:nth-child(odd){border-right:1px solid var(--border)}
+.stat-item:last-child{border-bottom:none;grid-column:span 2}
+.stat-num{font-size:26px}
+.rank-grid{grid-template-columns:1fr 1fr;gap:10px}
+.rank-grid .rank-box:last-child{grid-column:span 2}
+.rank-box .rv{font-size:22px}
+.kw-section{padding:24px 16px}
+.kw-title{font-size:13px;flex-wrap:wrap;gap:6px}
+.kw-badge{font-size:10px}
+.kw-table{font-size:11px;min-width:480px}
+.kw-table th,.kw-table td{padding:6px 8px}
+.globe-row{gap:6px}
+.globe-pill{font-size:10px;padding:3px 8px}
+.cases-grid{gap:16px}
+.case-card{grid-template-columns:1fr;gap:24px;padding:24px 16px}
+.case-title{font-size:18px}
+.case-desc{font-size:13px}
+.metrics-row{grid-template-columns:1fr 1fr;gap:10px}
+.metric-box .mv{font-size:20px}
+.bar-row{grid-template-columns:80px 1fr 55px;gap:8px;font-size:11px}
+.projects-grid{grid-template-columns:1fr 1fr;gap:12px}
+.proj-card{padding:16px 14px}
+.proj-name{font-size:13px}
+.proj-desc{font-size:11px}
+.skills-grid{grid-template-columns:1fr;gap:14px}
+.skill-card{padding:20px 16px}
+.tools-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+.tool-pill{padding:10px 8px;font-size:11px}
+.tool-icon{font-size:16px}
+.exp-grid{grid-template-columns:1fr;gap:40px}
+.timeline{padding-left:22px}
+.tl-role{font-size:16px}
+.tl-bullets li{font-size:12px}
+.contact-grid{grid-template-columns:1fr;gap:16px}
+.contact-card{padding:20px 16px}
+.cta-big{padding:24px 16px}
+.cta-big h3{font-size:20px}
+.cta-big p{font-size:13px}
+.btn-primary,.btn-ghost{padding:12px 20px;font-size:13px}
+footer{padding:20px 0}
+footer p{font-size:11px}
+}
+@media(max-width:400px){
+h1{font-size:32px}
+.stats-grid{grid-template-columns:1fr}
+.stat-item{border-right:none}
+.stat-item:nth-child(odd){border-right:none}
+.stat-item:last-child{grid-column:span 1}
+.projects-grid{grid-template-columns:1fr}
+.metrics-row{grid-template-columns:1fr}
+.rank-grid{grid-template-columns:1fr}
+.rank-grid .rank-box:last-child{grid-column:span 1}
 }
 </style>
 </head>
@@ -190,7 +255,7 @@ nav ul{display:none}
 <nav>
   <div class="inner">
     <div class="nav-logo">H<span>.</span>ul-Haq</div>
-    <ul>
+    <ul id="nav-links">
       <li><a href="#results">Results</a></li>
       <li><a href="#rankings">Rankings</a></li>
       <li><a href="#work">Case Studies</a></li>
@@ -198,8 +263,25 @@ nav ul{display:none}
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button id="hamburger" onclick="toggleMenu()" aria-label="Menu" style="display:none;background:none;border:1px solid var(--border2);color:var(--text);padding:8px 12px;border-radius:8px;cursor:pointer;font-size:18px;line-height:1">☰</button>
+  </div>
+  <!-- Mobile dropdown -->
+  <div id="mobile-menu" style="display:none;padding:16px 16px 20px;border-top:1px solid var(--border);background:rgba(10,10,15,0.97)">
+    <a href="#results" onclick="closeMenu()" style="display:block;padding:12px 0;color:var(--muted);text-decoration:none;font-size:14px;border-bottom:1px solid var(--border)">📊 Results</a>
+    <a href="#rankings" onclick="closeMenu()" style="display:block;padding:12px 0;color:var(--muted);text-decoration:none;font-size:14px;border-bottom:1px solid var(--border)">🔑 Rankings</a>
+    <a href="#work" onclick="closeMenu()" style="display:block;padding:12px 0;color:var(--muted);text-decoration:none;font-size:14px;border-bottom:1px solid var(--border)">💼 Case Studies</a>
+    <a href="#projects" onclick="closeMenu()" style="display:block;padding:12px 0;color:var(--muted);text-decoration:none;font-size:14px;border-bottom:1px solid var(--border)">🚀 Projects</a>
+    <a href="#skills" onclick="closeMenu()" style="display:block;padding:12px 0;color:var(--muted);text-decoration:none;font-size:14px;border-bottom:1px solid var(--border)">🎯 Skills</a>
+    <a href="#contact" onclick="closeMenu()" style="display:block;padding:12px 0;color:var(--accent);text-decoration:none;font-size:14px;font-weight:600">✉️ Contact</a>
   </div>
 </nav>
+<script>
+function toggleMenu(){var m=document.getElementById('mobile-menu');m.style.display=m.style.display==='none'?'block':'none';}
+function closeMenu(){document.getElementById('mobile-menu').style.display='none';}
+window.addEventListener('resize',function(){if(window.innerWidth>768){document.getElementById('mobile-menu').style.display='none';}});
+// Show hamburger on mobile
+(function(){var btn=document.getElementById('hamburger');if(window.innerWidth<=768)btn.style.display='block';window.addEventListener('resize',function(){btn.style.display=window.innerWidth<=768?'block':'none';});})();
+</script>
 
 <!-- HERO -->
 <section class="hero">
@@ -263,7 +345,7 @@ nav ul{display:none}
       <h2>Global Keyword Rankings</h2>
       <div class="section-line"></div>
     </div>
-    <p style="font-size:14px;color:var(--muted);margin-bottom:32px;max-width:640px;">Real-time SERP data pulled directly from Google Search Console. Rankings span <strong style="color:var(--text)">15+ countries</strong> across Asia, Europe, Middle East, Latin America, and beyond — not just USA.</p>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:32px;max-width:640px;">Commercial &amp; product keywords ranked globally — real GSC data, no branded terms. High-intent searches from buyers, students, and professionals across 30+ countries.</p>
 
     <!-- Acheron Instruments -->
     <div class="kw-section">
@@ -273,21 +355,28 @@ nav ul{display:none}
         <div class="rank-box pos13"><div class="rv">1,585</div><div class="rl">Top 3 Positions</div></div>
         <div class="rank-box pos110"><div class="rv">5,001+</div><div class="rl">Top 10 Keywords</div></div>
       </div>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
       <table class="kw-table">
-        <thead><tr><th>Keyword</th><th>Language / Country</th><th>Clicks</th><th>Impressions</th><th>Position</th></tr></thead>
+        <thead><tr><th>Keyword</th><th>Market</th><th>Clicks</th><th>Impressions</th><th>Position</th></tr></thead>
         <tbody>
-          <tr><td>acheron instruments</td><td>🌐 Global</td><td>2,039</td><td>3,663</td><td><span class="pos-badge p1">#1.3</span></td></tr>
-          <tr><td>multiple toothed vulsellum</td><td>🌐 Global</td><td>312</td><td>40,539</td><td><span class="pos-badge p1">#1.3</span></td></tr>
+          <tr><td>sponge holding forceps uses</td><td>🌐 Global</td><td>286</td><td>56,290</td><td><span class="pos-badge p1">#3.9</span></td></tr>
           <tr><td>kocher clamp</td><td>🌐 Global</td><td>323</td><td>51,442</td><td><span class="pos-badge p1">#2.0</span></td></tr>
-          <tr><td>hojas de bisturí tipos y usos</td><td>🇲🇽 Spanish</td><td>400</td><td>3,550</td><td><span class="pos-badge p1">#2.7</span></td></tr>
+          <tr><td>kielland forceps</td><td>🌐 Global</td><td>69</td><td>51,006</td><td><span class="pos-badge p1">#3.8</span></td></tr>
+          <tr><td>ovum forceps uses</td><td>🌐 Global</td><td>134</td><td>57,018</td><td><span class="pos-badge p1">#3.2</span></td></tr>
+          <tr><td>cheatle forceps uses</td><td>🌐 Global</td><td>220</td><td>81,602</td><td><span class="pos-badge p1">#2.5</span></td></tr>
+          <tr><td>sinus forceps</td><td>🌐 Global</td><td>110</td><td>68,300</td><td><span class="pos-badge p1">#2.5</span></td></tr>
+          <tr><td>babcock forceps uses</td><td>🌐 Global</td><td>320</td><td>63,796</td><td><span class="pos-badge p1">#3.4</span></td></tr>
+          <tr><td>green armytage forceps uses</td><td>🌐 Global</td><td>270</td><td>41,727</td><td><span class="pos-badge p1">#3.2</span></td></tr>
+          <tr><td>multiple toothed vulsellum</td><td>🌐 Global</td><td>312</td><td>40,539</td><td><span class="pos-badge p1">#1.3</span></td></tr>
+          <tr><td>curved artery forceps uses</td><td>🌐 Global</td><td>257</td><td>38,754</td><td><span class="pos-badge p1">#2.9</span></td></tr>
           <tr><td>les instruments chirurgicaux et leur nom</td><td>🇫🇷 French</td><td>387</td><td>13,470</td><td><span class="pos-badge p1">#3.0</span></td></tr>
-          <tr><td>liste instrument dentaire pdf</td><td>🇫🇷 French</td><td>911</td><td>8,011</td><td><span class="pos-badge p2">#5.3</span></td></tr>
-          <tr><td>أدوات طب الأسنان واسمائها pdf</td><td>🇸🇦 Arabic</td><td>658</td><td>17,870</td><td><span class="pos-badge p2">#6.8</span></td></tr>
-          <tr><td>babcock forceps uses</td><td>🌐 Global</td><td>320</td><td>63,796</td><td><span class="pos-badge p2">#3.4</span></td></tr>
-          <tr><td>zahnarzt instrumente bilder mit namen</td><td>🇩🇪 German</td><td>440</td><td>4,184</td><td><span class="pos-badge p2">#4.2</span></td></tr>
-          <tr><td>cerrahi aletlerin isimleri ve kullanımı pdf</td><td>🇹🇷 Turkish</td><td>351</td><td>5,541</td><td><span class="pos-badge p2">#3.9</span></td></tr>
+          <tr><td>best surgical instruments manufacturers in germany</td><td>🇩🇪 Germany</td><td>94</td><td>1,286</td><td><span class="pos-badge p1">#2.6</span></td></tr>
+          <tr><td>top surgical instruments companies in pakistan</td><td>🇵🇰 Pakistan</td><td>2,542</td><td>37</td><td><span class="pos-badge p1">#3.4</span></td></tr>
+          <tr><td>vasektomi set</td><td>🇮🇩 Indonesia</td><td>154</td><td>2,573</td><td><span class="pos-badge p1">#1.0</span></td></tr>
+          <tr><td>hojas de bisturí tipos y usos</td><td>🇲🇽 Spanish</td><td>400</td><td>3,550</td><td><span class="pos-badge p1">#2.7</span></td></tr>
         </tbody>
       </table>
+      </div>
       <div class="globe-row" style="margin-top:18px">
         <div class="globe-pill">🇮🇳 India <strong>31,615 clicks</strong></div>
         <div class="globe-pill">🇲🇽 Mexico <strong>24,081 clicks</strong></div>
@@ -295,7 +384,6 @@ nav ul{display:none}
         <div class="globe-pill">🇹🇷 Turkey <strong>18,702 clicks</strong></div>
         <div class="globe-pill">🇵🇰 Pakistan <strong>17,784 clicks</strong></div>
         <div class="globe-pill">🇹🇼 Taiwan <strong>17,328 clicks</strong></div>
-        <div class="globe-pill">🇹🇭 Thailand <strong>15,730 clicks</strong></div>
         <div class="globe-pill">🇩🇪 Germany <strong>12,972 clicks</strong></div>
         <div class="globe-pill">🇯🇵 Japan <strong>10,153 clicks</strong></div>
         <div class="globe-pill">🇺🇸 USA <strong>13,262 clicks</strong></div>
@@ -310,28 +398,32 @@ nav ul{display:none}
         <div class="rank-box pos13"><div class="rv">1,016</div><div class="rl">Top 3 Positions</div></div>
         <div class="rank-box pos110"><div class="rv">5,001+</div><div class="rl">Top 10 Keywords</div></div>
       </div>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
       <table class="kw-table">
-        <thead><tr><th>Keyword</th><th>Language / Country</th><th>Clicks</th><th>Impressions</th><th>Position</th></tr></thead>
+        <thead><tr><th>Keyword</th><th>Market</th><th>Clicks</th><th>Impressions</th><th>Position</th></tr></thead>
         <tbody>
-          <tr><td>surgitronix</td><td>🌐 Global</td><td>867</td><td>1,264</td><td><span class="pos-badge p1">#1.1</span></td></tr>
-          <tr><td>أدوات طب الأسنان واسمائها pdf</td><td>🇸🇦 Arabic</td><td>874</td><td>14,487</td><td><span class="pos-badge p2">#5.7</span></td></tr>
-          <tr><td>balfour retractor</td><td>🌐 Global</td><td>150</td><td>72,298</td><td><span class="pos-badge p1">#4.1</span></td></tr>
-          <tr><td>liste instrument dentaire pdf</td><td>🇫🇷 French</td><td>542</td><td>5,373</td><td><span class="pos-badge p2">#5.7</span></td></tr>
+          <tr><td>uterine dressing forceps</td><td>🌐 Global</td><td>59</td><td>23,221</td><td><span class="pos-badge p1">#2.7</span></td></tr>
+          <tr><td>green armytage forceps uses</td><td>🌐 Global</td><td>21</td><td>21,150</td><td><span class="pos-badge p1">#3.7</span></td></tr>
+          <tr><td>multiple toothed vulsellum</td><td>🌐 Global</td><td>99</td><td>31,383</td><td><span class="pos-badge p1">#3.6</span></td></tr>
           <tr><td>metzenbaum scissors</td><td>🌐 Global</td><td>522</td><td>100,278</td><td><span class="pos-badge p2">#7.4</span></td></tr>
-          <tr><td>apprendre les instruments dentaires pdf</td><td>🇫🇷 French</td><td>204</td><td>1,712</td><td><span class="pos-badge p1">#3.5</span></td></tr>
-          <tr><td>tijera metzenbaum</td><td>🇲🇽 Spanish</td><td>234</td><td>52,064</td><td><span class="pos-badge p2">#4.9</span></td></tr>
+          <tr><td>balfour retractor</td><td>🌐 Global</td><td>150</td><td>72,298</td><td><span class="pos-badge p2">#4.1</span></td></tr>
           <tr><td>walsham forceps</td><td>🌐 Global</td><td>150</td><td>43,025</td><td><span class="pos-badge p2">#4.8</span></td></tr>
+          <tr><td>cheatle forceps uses</td><td>🌐 Global</td><td>57</td><td>49,920</td><td><span class="pos-badge p2">#5.2</span></td></tr>
+          <tr><td>green armytage forceps uses</td><td>🌐 Global</td><td>21</td><td>21,150</td><td><span class="pos-badge p1">#3.7</span></td></tr>
           <tr><td>dental instruments names and pictures pdf</td><td>🌐 Global</td><td>535</td><td>41,910</td><td><span class="pos-badge p2">#5.8</span></td></tr>
-          <tr><td>54 basic surgical instruments pdf</td><td>🌐 Global</td><td>218</td><td>13,803</td><td><span class="pos-badge p3">#10.2</span></td></tr>
+          <tr><td>apprendre les instruments dentaires pdf</td><td>🇫🇷 French</td><td>204</td><td>1,712</td><td><span class="pos-badge p1">#3.5</span></td></tr>
+          <tr><td>green armytage forceps uses</td><td>🌐 Global</td><td>21</td><td>21,150</td><td><span class="pos-badge p1">#3.7</span></td></tr>
+          <tr><td>uterine dressing forceps uses</td><td>🌐 Global</td><td>19</td><td>2,225</td><td><span class="pos-badge p1">#3.4</span></td></tr>
         </tbody>
       </table>
+      </div>
     </div>
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;display:flex;align-items:center;gap:20px">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
       <div style="font-size:32px">🌍</div>
       <div>
         <div style="font-family:'Sen',sans-serif;font-size:15px;font-weight:700;color:var(--text)">Truly global reach — 30+ countries, 20+ languages</div>
-        <div style="font-size:13px;color:var(--muted);margin-top:4px">Keywords ranked in English, Arabic, Spanish, French, German, Turkish, Japanese, Korean, Indonesian, Vietnamese, Thai, Russian, Ukrainian, Italian, and more.</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px">Commercial keywords ranked in English, Arabic, Spanish, French, German, Turkish, Japanese, Korean, Indonesian, Vietnamese, Thai, Russian, Ukrainian, Italian, and more.</div>
       </div>
     </div>
   </div>
